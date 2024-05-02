@@ -735,40 +735,36 @@ var firstScriptTag = document.getElementsByTagName("script")[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
+function openVideoModal(button) {
+  console.log("hello");
 
-document.addEventListener("DOMContentLoaded", function () {
-  var modalTriggerButtons = document.querySelectorAll(".overlay-btn");
-  modalTriggerButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      var videoId = button.getAttribute("data-video-id");
-      var videoTitle = button.getAttribute("data-video-title");
-      var videoLink = button.getAttribute("data-video-link");
-      var playerContainer = document.getElementById("player-container");
-      var modalTitle = document.querySelector(".video-title");
-      var modalLink = document.querySelector(".video-link");
+  var videoId = button.getAttribute("data-video-id");
+  var videoTitle = button.getAttribute("data-video-title");
+  var videoLink = button.getAttribute("data-video-link");
+  var playerContainer = document.getElementById("player-container");
+  var modalTitle = document.querySelector(".video-title");
+  var modalLink = document.querySelector(".video-link");
 
-      modalTitle.textContent = videoTitle;
+  modalTitle.textContent = videoTitle;
 
-      modalLink.href = videoLink;
+  modalLink.href = videoLink;
 
-      // Destroy existing player if it exists
-      if (player) {
-        player.destroy();
-      }
+  // Destroy existing player if it exists
+  if (player) {
+    player.destroy();
+  }
 
-      playerContainer.innerHTML = "";
+  playerContainer.innerHTML = "";
 
-      // Create new player
-      player = new YT.Player("player-container", {
-        height: "500",
-        width: "100%",
-        videoId: videoId,
-        playerVars: {
-          autoplay: 1,
-          showinfo: 0,
-          controls: 0,
-        },
-      });
-    });
+  // Create new player
+  player = new YT.Player("player-container", {
+    height: "500",
+    width: "100%",
+    videoId: videoId,
+    playerVars: {
+      autoplay: 1,
+      showinfo: 0,
+      controls: 0,
+    },
   });
-});
+}
