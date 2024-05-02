@@ -706,7 +706,7 @@ var animateReveal = function () {
     });
   }
 };
-
+console.log("what are u looking for");
 // Function to create typing effect
 function typeWriter(element, text, speed) {
   let i = 0;
@@ -736,8 +736,6 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
 function openVideoModal(button) {
-  console.log("hello");
-
   var videoId = button.getAttribute("data-video-id");
   var videoTitle = button.getAttribute("data-video-title");
   var videoLink = button.getAttribute("data-video-link");
@@ -768,3 +766,43 @@ function openVideoModal(button) {
     },
   });
 }
+
+//MAILING
+document
+  .getElementById("contactForm")
+  .addEventListener("submit", async function (event) {
+    event.preventDefault(); // Prevent the form from submitting via HTTP
+
+    // Get form data
+    const formData = new FormData(this);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      subject: "Contact Form Submission", // You can customize the subject here if needed
+      message: formData.get("message"),
+    };
+
+    // Make HTTP POST request to serverless function endpoint
+    try {
+      const response = await fetch("/.netlify/functions/sendMail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        // Handle success
+        console.log("Email sent successfully");
+        // Optionally, show a success message to the user
+      } else {
+        // Handle errors
+        console.error("Failed to send email");
+        // Optionally, show an error message to the user
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      // Handle network errors
+    }
+  });
