@@ -15,7 +15,7 @@ if($_POST) {
 
    $name = trim(stripslashes($_POST['name']));
    $email = trim(stripslashes($_POST['email']));
-   $subject = trim(stripslashes($_POST['subject']));
+   $subject = 'Amalia Portfolio Website Enquiries';
    $contact_message = trim(stripslashes($_POST['message']));
 
    
