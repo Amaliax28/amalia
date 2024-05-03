@@ -2718,3 +2718,9 @@ span.error {
   border: none;
   outline:none;
 }
+
+.main {
+  height: auto;
+  position: absolute;
+  bottom: 10px;
+}
